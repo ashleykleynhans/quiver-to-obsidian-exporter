@@ -126,6 +126,12 @@ export function convertNotebook(quiverNotebook: string, outputPath: string, path
   const obsidianAttachmentFolderPath = calculateAttachmentFolderPath(outputPath, obsidianNoteDirPath, attachmentFolderPolicy)
 
   for (const quiverNotePath of quiverNotePaths) {
+    const metaPath = pathModule.join(quiverNotePath, 'meta.json')
+    const contentPath = pathModule.join(quiverNotePath, 'content.json')
+    if (!fs.pathExistsSync(metaPath) || !fs.pathExistsSync(contentPath)) {
+      logger.forceInfo(`  Skipping note with missing files: ${quiverNotePath}`)
+      continue
+    }
     const { title, content, quiverMeta } = transformQuiverNoteToObsidian(quiverNotePath)
     outputNoteAndCopyResources({ quiverNotePath, quiverMeta }, { obsidianNoteDirPath, title, content, obsidianAttachmentFolderPath })
   }
