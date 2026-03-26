@@ -69,35 +69,57 @@ Examples
 
 ### For Developers
 
-* Added debug logging (controlled by the environment variable QUIVER_TO_OBSIDIAN_EXPORTER_LOGGING_VERBOSE).
-* Created a Docker environment dedicated to testing.
+* Added debug logging (controlled by the environment variable `QUIVER_TO_OBSIDIAN_EXPORTER_LOGGING_VERBOSE`).
+* Created a Docker environment dedicated to integration testing.
+* Added unit test suite with Vitest.
 
 
-## How to Test (For Developers)
+## Development
 
-This testing procedure is designed for testing in a clean environment.  
-For routine testing, feel free to use your IDE of choice.  
+### Building
+
+```bash
+npm install
+npm run build
+```
+
+### Running Tests
+
+```bash
+npm test
+```
+
+To run tests with a coverage report:
+
+```bash
+npm run test:coverage
+```
+
+### Integration Testing (Docker)
+
+> [!NOTE]
+> This testing procedure is designed for testing in a clean environment.
+> For routine testing, feel free to use your IDE of choice.
 
 1. Prepare the `testdata` folder:
-    In the testdata folder, place xxx.qvlibrary in the sources directory, for example, and also provide a destination folder, etc. and use it as the location for the -o option (-o testdata/destination/MyNote)
-2. `yarn run build`.
-3. `npm pack`.
-4. `docker compose up -d --build`.
-5. Enter the Docker container: 
-   e.g.
-    ```
+    In the testdata folder, place xxx.qvlibrary in the sources directory, for example, and also provide a destination folder, etc. and use it as the location for the `-o` option (`-o testdata/destination/MyNote`)
+2. `npm run build`
+3. `npm pack`
+4. `docker compose up -d --build`
+5. Enter the Docker container:
+    ```bash
     docker exec -it quiver-to-obsidian-exporter-app-1 /bin/bash
-	```
-6.	Execute the command:
-	e.g.
-	```
-	qvr2obs testdata/source/MyNote.qvlibrary -o testdata/destination/MyNote -a subfolderUnderVault -n _attachments
-	```
+    ```
+6. Execute the command:
+    ```bash
+    qvr2obs testdata/source/MyNote.qvlibrary -o testdata/destination/MyNote -a subfolderUnderVault -n _attachments
+    ```
 
-If needed, enable verbose logging for debugging:
-```
-export QUIVER_TO_OBSIDIAN_EXPORTER_LOGGING_VERBOSE=true
-```
+> [!TIP]
+> Enable verbose logging for debugging:
+> ```bash
+> export QUIVER_TO_OBSIDIAN_EXPORTER_LOGGING_VERBOSE=true
+> ```
 
 
 ## Contributing

@@ -4,9 +4,9 @@
   "description": "Export Quiver library to Obsidian markdown files",
   "repository": {
     "type": "git",
-    "url": "https://github.com/blue-monk/quiver-to-obsidian-exporter"
+    "url": "https://github.com/ashleykleynhans/quiver-to-obsidian-exporter"
   },
-  "homepage": "https://github.com/blue-monk/quiver-to-obsidian-exporter",
+  "homepage": "https://github.com/ashleykleynhans/quiver-to-obsidian-exporter",
   "main": "dist/index.mjs",
   "files": [
     "dist"
@@ -20,6 +20,8 @@
   },
   "scripts": {
     "build": "rm -rf ./dist && tsc",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
     "prepublishOnly": "npm run build"
   },
   "keywords": [],
@@ -30,8 +32,10 @@
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.19.37",
     "@types/turndown": "^5.0.6",
+    "@vitest/coverage-v8": "^4.1.1",
     "ts-node": "^10.9.2",
-    "typescript": "~5.8"
+    "typescript": "~5.8",
+    "vitest": "^4.1.1"
   },
   "dependencies": {
     "chalk": "^5.6.2",
